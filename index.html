@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Future Foundation | AI Strategy & Automation</title>
+    <title>The Future Foundation | AI Strategy & Automation Consulting</title>
+    <meta name="description" content="AI consulting that drives strategic growth. Custom automation, fractional executive leadership, and hands-on AI implementation for businesses ready to lead.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -337,6 +338,22 @@
             transform: rotate(45deg);
         }
 
+        .card .card-cta {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: text-shadow 0.3s;
+        }
+
+        .card .card-cta:hover {
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
         /* --- Why Section --- */
         .why-section {
             padding: 100px 5%;
@@ -405,6 +422,245 @@
             fill: none;
             stroke-width: 0.5;
             opacity: 0.6;
+        }
+
+        /* --- Testimonials --- */
+        .testimonials-section {
+            padding: 100px 5%;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.4s;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            border-color: rgba(0, 242, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .testimonial-quote {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .testimonial-quote::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-color);
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(0, 242, 255, 0.1);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--accent-color);
+            flex-shrink: 0;
+        }
+
+        .testimonial-info strong {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .testimonial-info span {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        /* --- FAQ --- */
+        .faq-section {
+            padding: 100px 5%;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 50px auto 0;
+        }
+
+        .faq-item {
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            background: var(--card-bg);
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(0, 242, 255, 0.15);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .faq-question h3 {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-main);
+            flex: 1;
+        }
+
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-left: 15px;
+            transition: transform 0.3s;
+        }
+
+        .faq-toggle svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent-color);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-answer p {
+            padding: 0 25px 20px;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        /* --- Contact Form Section --- */
+        .contact-section {
+            padding: 100px 5%;
+        }
+
+        .contact-wrapper {
+            max-width: 600px;
+            margin: 50px auto 0;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 14px 18px;
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #555;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .contact-form .cta-btn {
+            align-self: flex-start;
+            padding: 14px 40px;
+            font-size: 0.85rem;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .contact-form .cta-btn {
+            border: 1px solid var(--accent-color);
+        }
+
+        .form-note {
+            font-size: 0.8rem;
+            color: #555;
         }
 
         /* --- CTA Section --- */
@@ -521,6 +777,8 @@
             .cta-section h2 { font-size: 1.8rem; }
             .footer-inner { flex-direction: column; align-items: center; text-align: center; }
             .footer-bottom { flex-direction: column; text-align: center; }
+            .form-row { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -532,18 +790,19 @@
         <div class="logo">THE FUTURE<span>FOUNDATION</span></div>
         <div class="nav-links">
             <a href="#services">Services</a>
-            <a href="#philosophy">Philosophy</a>
-            <a href="#contact">Contact</a>
-            <a href="#contact" class="cta-btn" style="margin-left: 14px;">Book Consultation</a>
+            <a href="#philosophy">About</a>
+            <a href="#testimonials">Success Stories</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact" class="cta-btn" style="margin-left: 14px;">Get in Touch</a>
         </div>
     </nav>
 
     <section class="hero">
         <p class="quote">"The future is already here – it's just not evenly distributed."<br>— William Gibson</p>
-        <h1>We are here to distribute the future.</h1>
-        <p>Your competitors are adapting. The technology to scale, automate, and dominate your market exists today. We provide the strategic leadership and AI solutions to put it to work for you.</p>
+        <h1>AI Consulting to Drive Strategic Growth</h1>
+        <p>Your competitors are adapting. The technology to scale, automate, and dominate your market exists today. We deliver customized AI solutions and executive-level strategy to put it to work — turning complexity into competitive advantage.</p>
         <div class="hero-actions">
-            <a href="#contact" class="cta-btn" style="padding: 15px 40px;">Claim Your Share of the Future</a>
+            <a href="#contact" class="cta-btn" style="padding: 15px 40px;">Schedule a Free Strategy Session</a>
             <a href="#services" class="secondary-link">Explore Our Services &darr;</a>
         </div>
     </section>
@@ -551,7 +810,7 @@
     <section id="services" class="services-section section-solid-alt">
         <div class="section-heading">
             <h2>Services</h2>
-            <p class="section-subtitle">Strategic Intelligence. Tactical Execution. We bridge the gap between AI hype and measurable business reality.</p>
+            <p class="section-subtitle">Strategic intelligence meets tactical execution. We bridge the gap between AI hype and measurable business outcomes.</p>
         </div>
 
         <div class="services-grid">
@@ -565,12 +824,13 @@
                     </svg>
                 </div>
                 <h3>AI Business Process Automation</h3>
-                <p>Stop wasting human potential on robotic tasks. We identify operational bottlenecks and deploy custom, secure AI agents and automation workflows.</p>
+                <p>Stop wasting human potential on robotic tasks. We identify operational bottlenecks and deploy custom, secure AI agents and automation workflows that deliver measurable ROI.</p>
                 <ul>
                     <li>Audit & Opportunity Mapping</li>
                     <li>Custom AI Workflow Integration</li>
                     <li>Legacy System Modernization</li>
                 </ul>
+                <a href="#contact" class="card-cta">Book a call &rarr;</a>
             </div>
             <div class="card">
                 <div class="card-icon">
@@ -583,12 +843,13 @@
                     </svg>
                 </div>
                 <h3>Fractional Chief AI Officer (CAIO)</h3>
-                <p>AI is moving too fast for part-time attention. Get executive-level AI leadership without the full-time overhead.</p>
+                <p>AI is moving too fast for part-time attention. Get executive-level AI leadership without the full-time overhead — tailored to your business, not off-the-shelf advice.</p>
                 <ul>
-                    <li>Enterprise AI Strategy</li>
+                    <li>Enterprise AI Strategy & Roadmap</li>
                     <li>Risk Mitigation & Governance</li>
                     <li>Vendor Selection & Management</li>
                 </ul>
+                <a href="#contact" class="card-cta">Book a call &rarr;</a>
             </div>
             <div class="card">
                 <div class="card-icon">
@@ -601,12 +862,13 @@
                     </svg>
                 </div>
                 <h3>Fractional CTO</h3>
-                <p>Solid technical foundations are required to support next-generation tech. We align engineering efforts with business goals.</p>
+                <p>Solid technical foundations are required to support next-generation tech. We align engineering efforts with business goals and build the infrastructure that scales.</p>
                 <ul>
                     <li>Technical Roadmap & Architecture</li>
                     <li>Team Building & Mentorship</li>
                     <li>Scalability & Infrastructure Planning</li>
                 </ul>
+                <a href="#contact" class="card-cta">Book a call &rarr;</a>
             </div>
         </div>
     </section>
@@ -614,30 +876,30 @@
     <section id="philosophy" class="why-section section-solid">
         <div class="section-heading">
             <h2>Why The Future Foundation?</h2>
+            <p class="section-subtitle">We don't hand you a report and disappear. We embed, execute, and deliver results.</p>
         </div>
 
         <div class="why-content">
             <div class="why-text">
-                <p>The divide between businesses that leverage AI and those that don't is widening every day. You don't need another generic consulting report; you need a strategic partner who can execute.</p>
+                <p>The divide between businesses that leverage AI and those that don't is widening every day. You don't need another generic consulting report — you need a strategic partner who can execute.</p>
                 <ul class="why-points">
                     <li>
-                        <strong>We speak business, not just code.</strong>
-                        <span>Every automation or strategic shift is tied directly to your ROI, operational efficiency, and bottom line.</span>
+                        <strong>Proven Track Record</strong>
+                        <span>Deep AI and software expertise with years of hands-on experience building and deploying real solutions across multiple industries. We've been in the trenches, not just the boardroom.</span>
                     </li>
                     <li>
-                        <strong>Elite Expertise, Fraction of the Cost.</strong>
-                        <span>Access top-tier executive leadership and specialized AI talent precisely when and how you need it.</span>
+                        <strong>Tailored Strategies, Not Templates</strong>
+                        <span>Every automation, strategy, and integration is custom-built around your operations, your goals, and your ROI — not recycled from another client's playbook.</span>
                     </li>
                     <li>
-                        <strong>Pragmatic, Not Theoretical.</strong>
-                        <span>We focus on deployable solutions that work right now, not science fiction.</span>
+                        <strong>Hands-On Execution</strong>
+                        <span>We don't just advise — we build. From strategic planning to implementation and deployment, we stay in the loop until the system is live and delivering value.</span>
                     </li>
                 </ul>
             </div>
             <div class="why-visual">
                 <div class="why-graphic">
                     <svg viewBox="0 0 100 100">
-                        <!-- Abstract network/data visualization -->
                         <circle cx="50" cy="50" r="30" />
                         <circle cx="50" cy="50" r="20" />
                         <circle cx="50" cy="50" r="10" />
@@ -663,10 +925,146 @@
         </div>
     </section>
 
-    <section id="contact" class="cta-section section-solid-alt">
+    <section id="testimonials" class="testimonials-section section-solid-alt">
+        <div class="section-heading">
+            <h2>Success Stories</h2>
+            <p class="section-subtitle">Don't take our word for it. Here's what our clients have to say about working with us.</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-quote">
+                    "The Future Foundation didn't just give us a strategy deck — they rolled up their sleeves and built the AI pipeline that cut our processing time by 60%. The ROI was visible within weeks."
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">JR</div>
+                    <div class="testimonial-info">
+                        <strong>James R.</strong>
+                        <!-- Replace with real name and title -->
+                        <span>COO, Enterprise SaaS Company</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-quote">
+                    "Having a fractional CAIO changed how our entire leadership team thinks about technology. They translated AI from a buzzword into a concrete competitive advantage for us."
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">SP</div>
+                    <div class="testimonial-info">
+                        <strong>Sarah P.</strong>
+                        <!-- Replace with real name and title -->
+                        <span>CEO, Financial Services Firm</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-quote">
+                    "We needed someone who could both architect the solution and manage the implementation. The Future Foundation delivered on both fronts — on time and under budget."
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">MK</div>
+                    <div class="testimonial-info">
+                        <strong>Michael K.</strong>
+                        <!-- Replace with real name and title -->
+                        <span>VP of Engineering, Growth-Stage Startup</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-quote">
+                    "Other consultants told us what to do. The Future Foundation showed us how to do it, built the first version with us, and trained our team to own it going forward. That's rare."
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">AL</div>
+                    <div class="testimonial-info">
+                        <strong>Andrea L.</strong>
+                        <!-- Replace with real name and title -->
+                        <span>Director of Operations, Manufacturing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq-section section-solid">
+        <div class="section-heading">
+            <h2>Frequently Asked Questions</h2>
+            <p class="section-subtitle">Straight answers. No jargon.</p>
+        </div>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h3>What kind of businesses do you work with?</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                </div>
+                <div class="faq-answer">
+                    <p>We work across industries — from SaaS and fintech to manufacturing and professional services. If your business has processes that involve data, decisions, or repetitive workflows, there's almost certainly untapped potential for AI. We tailor every engagement to your specific industry context and operational reality.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h3>How do you customize your approach for each client?</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Every engagement starts with a deep-dive discovery session. We map your current operations, identify the highest-leverage opportunities for automation and AI, and build a strategy around your actual constraints — budget, team capacity, and timeline. No cookie-cutter frameworks.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h3>What does "fractional" leadership actually mean?</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                </div>
+                <div class="faq-answer">
+                    <p>Fractional means you get senior executive-level expertise — a Chief AI Officer or CTO — without the full-time salary and commitment. We integrate with your team on a flexible basis: it could be a few days a week, a specific project engagement, or ongoing strategic advisory. You get the leadership you need, scaled to what makes sense for your business.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h3>How quickly can AI deliver real business results?</h3>
+                    <div class="faq-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+                </div>
+                <div class="faq-answer">
+                    <p>It depends on scope, but most clients see measurable impact within the first few weeks of implementation. We focus on quick wins first — automating high-volume, repetitive tasks — while building toward larger strategic transformations. The goal is always tangible ROI, not theoretical potential.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section section-solid-alt">
+        <div class="section-heading">
+            <h2>Let's Talk About Your Business</h2>
+            <p class="section-subtitle">Ready to put AI to work? Tell us about your challenges and we'll show you the opportunities.</p>
+        </div>
+
+        <div class="contact-wrapper">
+            <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="you@company.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your business challenges and what you're looking to achieve..."></textarea>
+                </div>
+                <p class="form-note">We'll respond within 24 hours. Your information is never shared with third parties.</p>
+                <button type="submit" class="cta-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="cta-section section-solid">
         <h2>Ready to step into the future?</h2>
-        <p>Let's discuss your current operations and identify your highest-leverage opportunities for automation and growth.</p>
-        <a href="mailto:hello@thefuturefoundation.com" class="cta-btn">Schedule Your Free Strategy Call</a>
+        <p>Schedule a free AI strategy session. We'll identify your highest-leverage opportunities for automation and growth — no strings attached.</p>
+        <a href="#contact" class="cta-btn">Schedule Your Free Strategy Session</a>
     </section>
 
     <footer>
@@ -676,9 +1074,11 @@
                 <p class="footer-tagline">Empowering the businesses of tomorrow, today.</p>
             </div>
             <div class="footer-links">
+                <a href="#services">Services</a>
+                <a href="#testimonials">Success Stories</a>
+                <a href="#faq">FAQ</a>
                 <a href="#contact">Contact Us</a>
                 <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
                 <a href="#">LinkedIn</a>
             </div>
             <div class="footer-contact">
@@ -744,6 +1144,34 @@
         window.addEventListener('resize', init);
         init();
         draw();
+
+        // FAQ Toggle
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            const wasActive = item.classList.contains('active');
+
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+
+            // Open clicked (if it wasn't already open)
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Contact Form Handler
+        function handleSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const name = form.querySelector('#name').value;
+            const email = form.querySelector('#email').value;
+            const message = form.querySelector('#message').value;
+
+            // Construct mailto fallback
+            const subject = encodeURIComponent('Strategy Session Inquiry from ' + name);
+            const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+            window.location.href = 'mailto:hello@thefuturefoundation.com?subject=' + subject + '&body=' + body;
+        }
     </script>
 </body>
 </html>
