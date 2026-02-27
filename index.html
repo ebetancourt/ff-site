@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Future Foundation | AI Strategy & Automation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #05070a;
+            --card-bg: #0d1117;
+            --section-bg: #0a0e14;
+            --accent-color: #00f2ff;
+            --accent-glow: rgba(0, 242, 255, 0.4);
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --nav-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            height: var(--nav-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(5, 7, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 22px;
+            font-size: 0.9rem;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .nav-links a.cta-btn:hover {
+            color: #000000;
+            text-shadow: none;
+        }
+
+        .cta-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 25px var(--accent-glow), 0 0 50px rgba(0, 242, 255, 0.2);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+        }
+
+        .quote {
+            font-style: italic;
+            color: var(--text-dim);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+            filter: drop-shadow(0 0 30px rgba(0, 242, 255, 0.15));
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-dim);
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-actions .secondary-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: text-shadow 0.3s;
+        }
+
+        .hero-actions .secondary-link:hover {
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* --- Solid section backgrounds --- */
+        .section-solid {
+            position: relative;
+            z-index: 1;
+            background: var(--bg-color);
+        }
+
+        .section-solid-alt {
+            position: relative;
+            z-index: 1;
+            background: var(--section-bg);
+        }
+
+        /* --- Section Heading --- */
+        .section-heading {
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-main);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-heading h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--accent-color);
+            margin: 12px auto 0;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .section-subtitle {
+            color: var(--text-dim);
+            max-width: 650px;
+            margin: 15px auto 0;
+            font-size: 1.05rem;
+        }
+
+        /* --- Services --- */
+        .services-section {
+            padding: 100px 5%;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.4s;
+            box-shadow: inset 0 0 30px rgba(0, 242, 255, 0.05), 0 0 30px rgba(0, 242, 255, 0.1);
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.15), 0 0 40px rgba(0, 242, 255, 0.05);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(0, 242, 255, 0.05);
+            transition: 0.4s;
+        }
+
+        .card:hover .card-icon {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-glow);
+            background: rgba(0, 242, 255, 0.1);
+        }
+
+        .card-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--accent-color);
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: filter 0.4s;
+        }
+
+        .card:hover .card-icon svg {
+            filter: drop-shadow(0 0 6px var(--accent-glow));
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            transition: text-shadow 0.4s;
+        }
+
+        .card:hover h3 {
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            padding: 4px 0;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            border: 1px solid var(--accent-color);
+            border-radius: 1px;
+            transform: rotate(45deg);
+        }
+
+        /* --- Why Section --- */
+        .why-section {
+            padding: 100px 5%;
+        }
+
+        .why-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .why-text p {
+            color: var(--text-dim);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+        }
+
+        .why-points {
+            list-style: none;
+            padding: 0;
+        }
+
+        .why-points li {
+            margin-bottom: 25px;
+            padding-left: 0;
+        }
+
+        .why-points li strong {
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .why-points li span {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .why-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .why-graphic {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1;
+            border: 1px solid rgba(0, 242, 255, 0.1);
+            border-radius: 16px;
+            background: radial-gradient(circle at 30% 40%, rgba(0, 242, 255, 0.08) 0%, transparent 60%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-graphic svg {
+            width: 60%;
+            height: 60%;
+            stroke: var(--accent-color);
+            fill: none;
+            stroke-width: 0.5;
+            opacity: 0.6;
+        }
+
+        /* --- CTA Section --- */
+        .cta-section {
+            padding: 120px 5%;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.1));
+        }
+
+        .cta-section p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-section .cta-btn {
+            padding: 16px 40px;
+            font-size: 0.9rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            position: relative;
+            z-index: 1;
+            background: var(--bg-color);
+            padding: 50px 5% 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-tagline {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-contact {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        .footer-contact a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-bottom p {
+            font-size: 0.75rem;
+            color: #444;
+        }
+
+        .legal-name {
+            font-size: 0.7rem;
+            color: #444;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .why-content { grid-template-columns: 1fr; }
+            .why-visual { order: -1; }
+            .cta-section h2 { font-size: 1.8rem; }
+            .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="networkCanvas"></canvas>
+
+    <nav>
+        <div class="logo">THE FUTURE<span>FOUNDATION</span></div>
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#philosophy">Philosophy</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact" class="cta-btn" style="margin-left: 14px;">Book Consultation</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <p class="quote">"The future is already here – it's just not evenly distributed."<br>— William Gibson</p>
+        <h1>We are here to distribute the future.</h1>
+        <p>Your competitors are adapting. The technology to scale, automate, and dominate your market exists today. We provide the strategic leadership and AI solutions to put it to work for you.</p>
+        <div class="hero-actions">
+            <a href="#contact" class="cta-btn" style="padding: 15px 40px;">Claim Your Share of the Future</a>
+            <a href="#services" class="secondary-link">Explore Our Services &darr;</a>
+        </div>
+    </section>
+
+    <section id="services" class="services-section section-solid-alt">
+        <div class="section-heading">
+            <h2>Services</h2>
+            <p class="section-subtitle">Strategic Intelligence. Tactical Execution. We bridge the gap between AI hype and measurable business reality.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2a3 3 0 0 0-3 3v1H6a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v3a2 2 0 0 0 2 2h1v1a3 3 0 0 0 6 0v-1h1a2 2 0 0 0 2-2v-3h1a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-3V5a3 3 0 0 0-3-3z"/>
+                        <circle cx="9" cy="9.5" r="1"/>
+                        <circle cx="15" cy="9.5" r="1"/>
+                        <path d="M9.5 14a3.5 3.5 0 0 0 5 0"/>
+                    </svg>
+                </div>
+                <h3>AI Business Process Automation</h3>
+                <p>Stop wasting human potential on robotic tasks. We identify operational bottlenecks and deploy custom, secure AI agents and automation workflows.</p>
+                <ul>
+                    <li>Audit & Opportunity Mapping</li>
+                    <li>Custom AI Workflow Integration</li>
+                    <li>Legacy System Modernization</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        <circle cx="18" cy="11" r="1" fill="var(--accent-color)" stroke="none"/>
+                    </svg>
+                </div>
+                <h3>Fractional Chief AI Officer (CAIO)</h3>
+                <p>AI is moving too fast for part-time attention. Get executive-level AI leadership without the full-time overhead.</p>
+                <ul>
+                    <li>Enterprise AI Strategy</li>
+                    <li>Risk Mitigation & Governance</li>
+                    <li>Vendor Selection & Management</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                        <polyline points="7 8 10 11 7 14"/>
+                        <line x1="13" y1="14" x2="17" y2="14"/>
+                    </svg>
+                </div>
+                <h3>Fractional CTO</h3>
+                <p>Solid technical foundations are required to support next-generation tech. We align engineering efforts with business goals.</p>
+                <ul>
+                    <li>Technical Roadmap & Architecture</li>
+                    <li>Team Building & Mentorship</li>
+                    <li>Scalability & Infrastructure Planning</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="philosophy" class="why-section section-solid">
+        <div class="section-heading">
+            <h2>Why The Future Foundation?</h2>
+        </div>
+
+        <div class="why-content">
+            <div class="why-text">
+                <p>The divide between businesses that leverage AI and those that don't is widening every day. You don't need another generic consulting report; you need a strategic partner who can execute.</p>
+                <ul class="why-points">
+                    <li>
+                        <strong>We speak business, not just code.</strong>
+                        <span>Every automation or strategic shift is tied directly to your ROI, operational efficiency, and bottom line.</span>
+                    </li>
+                    <li>
+                        <strong>Elite Expertise, Fraction of the Cost.</strong>
+                        <span>Access top-tier executive leadership and specialized AI talent precisely when and how you need it.</span>
+                    </li>
+                    <li>
+                        <strong>Pragmatic, Not Theoretical.</strong>
+                        <span>We focus on deployable solutions that work right now, not science fiction.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="why-visual">
+                <div class="why-graphic">
+                    <svg viewBox="0 0 100 100">
+                        <!-- Abstract network/data visualization -->
+                        <circle cx="50" cy="50" r="30" />
+                        <circle cx="50" cy="50" r="20" />
+                        <circle cx="50" cy="50" r="10" />
+                        <line x1="50" y1="20" x2="50" y2="5" />
+                        <line x1="50" y1="80" x2="50" y2="95" />
+                        <line x1="20" y1="50" x2="5" y2="50" />
+                        <line x1="80" y1="50" x2="95" y2="50" />
+                        <line x1="29" y1="29" x2="15" y2="15" />
+                        <line x1="71" y1="29" x2="85" y2="15" />
+                        <line x1="29" y1="71" x2="15" y2="85" />
+                        <line x1="71" y1="71" x2="85" y2="85" />
+                        <circle cx="50" cy="5" r="2" fill="var(--accent-color)" stroke="none" opacity="0.5"/>
+                        <circle cx="50" cy="95" r="2" fill="var(--accent-color)" stroke="none" opacity="0.5"/>
+                        <circle cx="5" cy="50" r="2" fill="var(--accent-color)" stroke="none" opacity="0.5"/>
+                        <circle cx="95" cy="50" r="2" fill="var(--accent-color)" stroke="none" opacity="0.5"/>
+                        <circle cx="15" cy="15" r="2" fill="var(--accent-color)" stroke="none" opacity="0.5"/>
+                        <circle cx="85" cy="15" r="2" fill="var(--accent-color)" stroke="none" opacity="0.5"/>
+                        <circle cx="15" cy="85" r="2" fill="var(--accent-color)" stroke="none" opacity="0.5"/>
+                        <circle cx="85" cy="85" r="2" fill="var(--accent-color)" stroke="none" opacity="0.5"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="cta-section section-solid-alt">
+        <h2>Ready to step into the future?</h2>
+        <p>Let's discuss your current operations and identify your highest-leverage opportunities for automation and growth.</p>
+        <a href="mailto:hello@thefuturefoundation.com" class="cta-btn">Schedule Your Free Strategy Call</a>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="logo">THE FUTURE<span>FOUNDATION</span></div>
+                <p class="footer-tagline">Empowering the businesses of tomorrow, today.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#contact">Contact Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">LinkedIn</a>
+            </div>
+            <div class="footer-contact">
+                Contact Info: <a href="tel:+511600836899">+511 600 836 899</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Future Foundation Strategic Consultants Limited. All rights reserved.</p>
+            <div class="legal-name">Future Foundation Strategic Consultants Limited</div>
+        </div>
+    </footer>
+
+    <script>
+        // Particle Background Logic
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < 80; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00f2ff';
+            ctx.strokeStyle = 'rgba(0, 242, 255, 0.15)';
+
+            particles.forEach((p, i) => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+                ctx.fill();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        draw();
+    </script>
+</body>
+</html>
