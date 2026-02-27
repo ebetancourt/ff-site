@@ -1163,14 +1163,44 @@
         function handleSubmit(e) {
             e.preventDefault();
             const form = e.target;
-            const name = form.querySelector('#name').value;
-            const email = form.querySelector('#email').value;
-            const message = form.querySelector('#message').value;
+            const btn = form.querySelector('button[type="submit"]');
+            const name = form.querySelector('#name').value.trim();
+            const email = form.querySelector('#email').value.trim();
+            const message = form.querySelector('#message').value.trim();
 
-            // Construct mailto fallback
-            const subject = encodeURIComponent('Strategy Session Inquiry from ' + name);
-            const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
-            window.location.href = 'mailto:hello@thefuturefoundation.com?subject=' + subject + '&body=' + body;
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+
+            fetch('https://api.emailoctopus.com/lists/5d9d842c-aa91-11ee-b601-2bca8e4b2516/contacts', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer eo_1b6399b528b92f420ec97445c573c711b39b3901c41a475db7e38d4c122e654b'
+                },
+                body: JSON.stringify({
+                    email_address: email,
+                    fields: {
+                        FullName: name,
+                        ContactMessage: message,
+                        ContactBrand: 'futurefoundation'
+                    },
+                    tags: ['website-inquiry', 'futurefoundation'],
+                    status: 'subscribed'
+                })
+            })
+            .then(function(res) {
+                if (!res.ok) return res.json().then(function(err) { throw err; });
+                return res.json();
+            })
+            .then(function() {
+                form.innerHTML = '<p style="color: var(--accent-color); font-size: 1.1rem; text-align: center; padding: 40px 0;">Message received. We\'ll be in touch within 24 hours.</p>';
+            })
+            .catch(function(err) {
+                console.error('Form submission error:', err);
+                btn.disabled = false;
+                btn.textContent = 'Send Message';
+                alert('Something went wrong. Please try again or email us directly at hello@thefuturefoundation.com');
+            });
         }
     </script>
 </body>
