@@ -1160,33 +1160,23 @@
         }
 
         // Contact Form Handler
+        var FORM_ENDPOINT = 'https://ff-contact-form.elliot-ee6.workers.dev';
+
         function handleSubmit(e) {
             e.preventDefault();
-            const form = e.target;
-            const btn = form.querySelector('button[type="submit"]');
-            const name = form.querySelector('#name').value.trim();
-            const email = form.querySelector('#email').value.trim();
-            const message = form.querySelector('#message').value.trim();
+            var form = e.target;
+            var btn = form.querySelector('button[type="submit"]');
+            var name = form.querySelector('#name').value.trim();
+            var email = form.querySelector('#email').value.trim();
+            var message = form.querySelector('#message').value.trim();
 
             btn.disabled = true;
             btn.textContent = 'Sending...';
 
-            fetch('https://api.emailoctopus.com/lists/5d9d842c-aa91-11ee-b601-2bca8e4b2516/contacts', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eo_1b6399b528b92f420ec97445c573c711b39b3901c41a475db7e38d4c122e654b'
-                },
-                body: JSON.stringify({
-                    email_address: email,
-                    fields: {
-                        FullName: name,
-                        ContactMessage: message,
-                        ContactBrand: 'futurefoundation'
-                    },
-                    tags: {'website-inquiry': true, 'futurefoundation': true},
-                    status: 'subscribed'
-                })
+            fetch(FORM_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name, email: email, message: message })
             })
             .then(function(res) {
                 if (!res.ok) return res.json().then(function(err) { throw err; });
